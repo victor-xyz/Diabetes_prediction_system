@@ -1,30 +1,32 @@
 # Diabetes Risk Prediction System
 
-A machine-learning-based system for predicting the likelihood of diabetes risk from patient health data.
+A machine-learning-based system for predicting the likelihood of diabetes risk using patient health data.
 
 ## Project
 
 **A MACHINE-LEARNING-BASED SYSTEM FOR PREDICTING THE LIKELIHOOD OF DIABETES RISK USING PATIENT HEALTH DATA**
 
-This project was developed as a final-year Computer Science project at the University of Benin.
+Final-year Computer Science project, University of Benin.
 
-## Overview
+## What this project demonstrates
 
-The system uses supervised machine learning to learn the relationship between clinical and demographic variables and an observed diabetes outcome.
+This project covers an end-to-end supervised machine-learning workflow:
 
-The implementation includes:
-
-- Data preprocessing
-- Feature scaling
-- Logistic Regression
-- Model evaluation
-- Cross-validation
+- Data preparation and feature selection
+- Train/test splitting
+- Feature scaling with StandardScaler
+- Logistic Regression for binary classification
 - Probability-based prediction
-- A Streamlit interface for interactive use
+- Cross-validation
+- Evaluation with multiple classification metrics
+- Interactive deployment with Streamlit
+- Interpretation of model limitations and responsible-use considerations
 
-## Input Features
+## Dataset
 
-The model uses eight input variables:
+The project uses the **Pima Indians Diabetes dataset**, containing 768 records and eight predictive features.
+
+Features:
 
 | Feature | Description |
 |---|---|
@@ -37,28 +39,26 @@ The model uses eight input variables:
 | DiabetesPedigreeFunction | Diabetes pedigree function |
 | Age | Age in years |
 
-The target variable is **Outcome**, representing the observed diabetes classification in the dataset.
+Target: **Outcome**
 
-## Dataset
+The dataset is used for educational and research purposes. It should not be treated as clinically representative of all populations.
 
-The project uses the Pima Indians Diabetes dataset, containing 768 records and eight predictive features.
+## Modelling approach
 
-The dataset is used for educational and research purposes. It should not be interpreted as a clinically representative population for all patients or healthcare settings.
+The final classifier is Logistic Regression with feature scaling.
 
-## Model Development
+The data was divided into:
 
-The data was divided using:
-
+- Training set: 614 records
+- Test set: 154 records
 - Test size: 20%
 - Random state: 42
-- Training records: 614
-- Test records: 154
 
-Feature scaling was applied before training the final Logistic Regression model.
+Logistic Regression was selected because the task is binary classification and the model provides probability estimates and interpretable coefficients.
 
-## Final Test Results
+## Evaluation results
 
-The scaled Logistic Regression model produced the following results on the held-out test set:
+Results from the final held-out test evaluation:
 
 | Metric | Result |
 |---|---:|
@@ -68,54 +68,66 @@ The scaled Logistic Regression model produced the following results on the held-
 | F1-score | 66.07% |
 | ROC-AUC | 81.47% |
 
-### Confusion Matrix
+### Confusion matrix
+
+| | Predicted 0 | Predicted 1 |
+|---|---:|---:|
+| Actual 0 | 79 | 20 |
+| Actual 1 | 18 | 37 |
+
+Mean 5-fold cross-validation accuracy was approximately **76.06%**.
+
+The complete evaluation notes are available in [docs/results.md](docs/results.md), while the model card is available in [docs/model_card.md](docs/model_card.md).
+
+## Application
+
+The original project includes a Streamlit interface that accepts the eight model inputs and returns an estimated probability associated with the positive outcome.
+
+The prediction is a model output and **not a medical diagnosis**.
+
+The deployment source is being organised separately from the research documentation so that the repository remains easy to inspect.
+
+## Repository structure
 
 ```text
-                Predicted
-                0      1
-Actual  0      79     20
-        1      18     37
+Diabetes_prediction_system/
+├── docs/
+│   ├── model_card.md
+│   └── results.md
+├── src/
+│   └── train_model.py
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
-
-The model also achieved a mean cross-validation accuracy of approximately **76.06%**.
-
-## Why Logistic Regression?
-
-Logistic Regression was selected because the task is binary classification and the model provides interpretable coefficients and probability estimates.
-
-Feature scaling was used to place numerical variables on comparable scales during optimisation.
-
-## Prediction Output
-
-The Streamlit application accepts patient health measurements and returns an estimated probability associated with the positive diabetes outcome.
-
-The probability should be interpreted as a model output, not as a medical diagnosis.
 
 ## Limitations
 
 - The dataset is relatively small.
 - The source dataset has demographic and geographic limitations.
-- Model performance may differ on other populations and clinical settings.
-- The system does not replace professional medical assessment.
-- Missing-value handling and dataset quality can affect model performance.
-- A single model does not capture every clinically relevant factor.
+- Performance may differ on other populations and clinical settings.
+- Dataset quality and missing-value treatment can affect model performance.
+- The model has not been clinically validated.
+- A single machine-learning model does not capture every clinically relevant factor.
 
-## Future Work
+## Future work
 
 Potential extensions include:
 
-- Comparing additional classification algorithms
+- Comparison with additional classifiers
 - Ensemble modelling
-- More extensive hyperparameter tuning
+- Hyperparameter tuning
 - External validation
 - Improved missing-value treatment
 - Explainable AI techniques
 - Larger and more representative datasets
 - Clinical validation before any real-world deployment
 
-## Application
+## Portfolio relevance
 
-The project includes a Streamlit interface designed to make the trained model accessible through a simple interactive workflow.
+This project demonstrates practical experience with **Python, machine learning, data preprocessing, model evaluation, probability-based classification, Streamlit, technical documentation, and responsible AI considerations**.
+
+It complements the other portfolio projects in this profile covering AI evaluation, multimodal annotation, and Python data analysis.
 
 ## Author
 
